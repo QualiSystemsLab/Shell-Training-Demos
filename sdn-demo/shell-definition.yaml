@@ -1,0 +1,54 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+metadata:
+  template_name: Sdn Demo
+  template_author: Anonymous
+  template_version: 0.1.0
+  template_icon: shell-icon.png
+
+description: >
+ Sample TOSCA based shell
+
+imports:
+  - cloudshell_standard: cloudshell_sdn_controller_standard_1_0_1.yaml
+
+node_types:
+
+  vendor.Sdn Demo:
+    derived_from: cloudshell.nodes.SDNController
+    #properties:
+    #  my_property:
+    #    type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+    #    default: fast
+    #    description: Some attribute description
+    #    constraints:
+    #      - valid_values: [fast, slow]
+    capabilities:
+      auto_discovery_capability:
+        type: cloudshell.capabilities.AutoDiscovery
+        properties:
+          User:
+            description: User with administrative privileges
+            type: string
+          Password:
+            type: cloudshell.datatypes.Password
+          Controller TCP Port:
+            description:
+            type: integer
+            default: 8181
+          Scheme:
+            type: string
+            default: HTTP
+          Enable Full Trunk Ports:
+            description: "Optional. in case need to configure a full trunk port (example: ports that private cloud provider are connected to) the ports should be listed in format: openflow:1::eth1;openflow:1:eth2"
+            type: string
+          Disable Full Trunk Ports:
+            description: "Optional. in case need to remove a full trunk port configuration the ports should be listed in format: openflow:1::eth1;openflow:1:eth2"
+            type: string
+    artifacts:
+      icon:
+        file: shell-icon.png
+        type: tosca.artifacts.File
+      driver:
+        file: SdnDemoDriver.zip
+        type: tosca.artifacts.File

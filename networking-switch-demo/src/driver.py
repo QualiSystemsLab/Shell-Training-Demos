@@ -14,6 +14,8 @@ from cloudshell.shell.flows.connectivity.models.connectivity_result import Conne
 from cloudshell.shell.flows.connectivity.simple_flow import apply_connectivity_changes
 from cloudshell.shell.standards.networking.driver_interface import NetworkingResourceDriverInterface
 from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionContext
+from cloudshell_cli_handler import CreateSession
+from build_resource import BuildResourceFlow
 
 from data_model import *  # run 'shellfoundry generate' to generate data model classes
 
@@ -227,19 +229,29 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         # In real life, this code will be preceded by SNMP/other calls to the resource details and will not be static
         # run 'shellfoundry generate' in order to create classes that represent your data model
 
+        # Create Resource Object
         resource = NetworkingSwitchDemo.create_from_context(context)
+
+        # Get details from Context
         host = context.resource.address
-        user = resource.user
+        user_name = resource.user
         password = resource.password
 
-        # === In production, password needs to be decrypted via cloudshell api ===
-        # api = CloudShellSessionContext(context).get_api()
-        # password = api.DecryptPassword(password)
+        # === In production, password  on context is encrypted, needs to be decrypted via api ===
+        """
+        api = CloudShellSessionContext(context).get_api()
+        password = api.DecryptPassword(password)
+        """
 
-        # Placeholder Pseudo-code
-        # resource_cli_data = get_cli_data(host, user, password)
-        # resource = build_resource(resource, cli_data)
+        # Get CLI session
+        # cli = CreateSession(host, user_name, password)
 
+        cli = None
+        build_resource_flow = BuildResourceFlow(resource=resource, cli=cli)
+        resource = build_resource_flow.build_resource()
+
+        """
+        === SAMPLE CODE ===
         resource.vendor = 'specify the shell vendor'
         resource.model = 'specify the shell model'
 
@@ -257,6 +269,7 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         port1.mac_address = 'fe80::e10c:f055:f7f1:bb7t16'
         port1.ipv4_address = '192.168.10.7'
         module1.add_sub_resource('1', port1)
+        """
 
         autoload_details = resource.create_autoload_details()
         return autoload_details
