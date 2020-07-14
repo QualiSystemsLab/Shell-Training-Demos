@@ -3,7 +3,7 @@ from cloudshell_cli_handler import CreateSession
 
 def get_chassis_data(cli):
     commands = ["command1", "command "]
-    outp = cli.send_terminal_command(commands)
+    outp = cli.send_terminal_commands(commands)
     pass
 
 

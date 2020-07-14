@@ -9,5 +9,10 @@
                 <Parameter Name="delay" DisplayName="Delay" Type="String" Mandatory="False" DefaultValue="0"/>
             </Parameters>
         </Command>
+        <Command Name="my_power_on" DisplayName="My Power On" Tags="remote_connectivity" Description="Custom Power On">
+            <Parameters>
+                <Parameter Name="target_ports" DisplayName="Target Ports" Type="String" Mandatory="False" DefaultValue=""/>
+            </Parameters>
+        </Command>
     </Layout>
 </Driver>

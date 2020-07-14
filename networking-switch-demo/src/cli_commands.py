@@ -1,5 +1,5 @@
 # === Resource Data ===
-def get_chassis_list():
+def get_chassis_list(cli):
     """CLI flow to get chassis of chassis"""
     return ["chassis1"]
 

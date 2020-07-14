@@ -24,7 +24,7 @@ class BuildResourceFlow(object):
         chassis_resource.add_sub_resource(str(module_index + 1), module_resource)
 
         # build ports of modules
-        ports_list = get_ports_list(module_name)
+        ports_list = get_ports_list(self._cli, module_name)
         for port_index, port_name in enumerate(ports_list):
             self._build_ports(module_resource, port_index, port_name)
 
@@ -35,7 +35,7 @@ class BuildResourceFlow(object):
         self.resource.add_sub_resource(str(chassis_index + 1), chassis_resource)
 
         # build modules of chassis
-        module_list = get_module_list(chassis_name)
+        module_list = get_module_list(self._cli, chassis_name)
         for module_index, module_name in enumerate(module_list):
             self._build_modules(chassis_resource, module_index, module_name)
 
@@ -43,7 +43,7 @@ class BuildResourceFlow(object):
         self.resource.vendor = 'specify the shell vendor'
         self.resource.model = 'specify the shell model'
 
-        chassis_list = get_chassis_list()
+        chassis_list = get_chassis_list(self._cli)
         for chassis_index, chassis_name in enumerate(chassis_list):
             self._build_chassis(chassis_index, chassis_name)
 

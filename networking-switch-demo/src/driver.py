@@ -16,6 +16,7 @@ from cloudshell.shell.standards.networking.driver_interface import NetworkingRes
 from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionContext
 from cloudshell_cli_handler import CreateSession
 from build_resource import BuildResourceFlow
+from cloudshell_cli_handler import CreateSession
 
 from data_model import *  # run 'shellfoundry generate' to generate data model classes
 
@@ -238,10 +239,8 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         password = resource.password
 
         # === In production, password  on context is encrypted, needs to be decrypted via api ===
-        """
-        api = CloudShellSessionContext(context).get_api()
-        password = api.DecryptPassword(password)
-        """
+        # api = CloudShellSessionContext(context).get_api()
+        # password = api.DecryptPassword(password)
 
         # Get CLI session
         # cli = CreateSession(host, user_name, password)
@@ -301,3 +300,4 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         :return:
         """
         name = context.resource.name
+        context.connectors
