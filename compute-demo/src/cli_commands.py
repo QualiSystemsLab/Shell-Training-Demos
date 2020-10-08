@@ -52,6 +52,7 @@ if __name__ == "__main__":
     username = "root"
     password = "qs1234"
     cli = CreateSession(host=host, username=username, password=password)
+    # all_ips = get_all_ips(cli)
     python_outp = check_python_version(cli)
     print(python_outp)
     pass

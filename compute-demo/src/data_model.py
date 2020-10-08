@@ -155,6 +155,36 @@ class ComputeDemo(object):
         return 'ComputeDemo'
 
     @property
+    def my_property(self):
+        """
+        :rtype: str
+        """
+        return self.attributes['ComputeDemo.my_property'] if 'ComputeDemo.my_property' in self.attributes else None
+
+    @my_property.setter
+    def my_property(self, value='fast'):
+        """
+        Some attribute description
+        :type value: str
+        """
+        self.attributes['ComputeDemo.my_property'] = value
+
+    @property
+    def my_property2(self):
+        """
+        :rtype: str
+        """
+        return self.attributes['ComputeDemo.my_property2'] if 'ComputeDemo.my_property2' in self.attributes else None
+
+    @my_property2.setter
+    def my_property2(self, value='demo default'):
+        """
+        Some attribute description
+        :type value: str
+        """
+        self.attributes['ComputeDemo.my_property2'] = value
+
+    @property
     def storage_capacity(self):
         """
         :rtype: str

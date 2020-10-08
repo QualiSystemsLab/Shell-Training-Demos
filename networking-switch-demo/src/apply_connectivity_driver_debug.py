@@ -3,6 +3,7 @@ import cloudshell.helpers.scripts.cloudshell_scripts_helpers as sh
 from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext, ConnectivityContext, \
     Connector, ReservationContextDetails, ResourceContextDetails
 import driver as my_driver
+import json
 
 LIVE_SANDBOX_ID = "1e91bfae-2414-44d8-8315-998341e168d0"
 RESOURCE_NAME = "network switch demo 1"
@@ -47,5 +48,8 @@ context = ResourceCommandContext(
 )
 
 debug_driver_instance = my_driver.NetworkingSwitchDemoDriver()
-res = debug_driver_instance.hello_world(context)
+
+with open('vlan_request_sample.json') as f:
+    request = json.load(f)
+res = debug_driver_instance.ApplyConnectivityChanges(context, request)
 pass

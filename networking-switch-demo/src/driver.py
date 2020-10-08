@@ -17,6 +17,8 @@ from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionCo
 from cloudshell_cli_handler import CreateSession
 from build_resource import BuildResourceFlow
 from cloudshell_cli_handler import CreateSession
+from cloudshell.shell.core.session.logging_session import LoggingSessionContext
+from ConnectivityFlow import MyConnectivityFlow
 
 from data_model import *  # run 'shellfoundry generate' to generate data model classes
 
@@ -39,6 +41,7 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
 
 
     """
+
     def __init__(self):
         """ Constructor must be without arguments, it is created with reflection at run time """
 
@@ -209,10 +212,41 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         :return: a json object with the list of connectivity changes which were carried out by the switch
         :rtype: str
         """
+        # res_id = context.reservation.reservation_id
+        # api = CloudShellSessionContext(context).get_api()
+        # api.WriteMessageToReservationOutput(res_id, "=== connectivity request ===")
+        # api.WriteMessageToReservationOutput(res_id, request)
+        # # response = apply_connectivity_changes(request=request,
+        # #                                       add_vlan_action=lambda action: ConnectivitySuccessResponse(action, 'Success'),
+        # #                                       remove_vlan_action=lambda action: ConnectivitySuccessResponse(action, 'Success'))
+        # response = apply_connectivity_changes(request=request,
+        #                                       add_vlan_action=my_add_vlan_action),
+        #                                       remove_vlan_action=lambda action: ConnectivitySuccessResponse(action,
+        #                                                                                                     'Success'))
+        # api.WriteMessageToReservationOutput(res_id, "=== connectivity response ===")
+        # # response.driverResponse.actionResults
+        # api.WriteMessageToReservationOutput(res_id, response)
+        # return response
 
-        return apply_connectivity_changes(request=request,
-                                          add_vlan_action=lambda x: ConnectivitySuccessResponse(x,'Success'),
-                                          remove_vlan_action=lambda x: ConnectivitySuccessResponse(x,'Success'))
+        with LoggingSessionContext(context) as logger:
+            api = CloudShellSessionContext(context).get_api()
+            res_id = context.reservation.reservation_id
+            api.WriteMessageToReservationOutput(res_id, "=== connectivity request ===")
+            api.WriteMessageToReservationOutput(res_id, request)
+            resource_config = NetworkingResourceConfig.from_context(
+                self.SHELL_NAME,
+                context,
+                api,
+                self.SUPPORTED_OS,
+            )
+            resource_config = NetworkingSwitchDemo.create_from_context(context)
+            cli_configurator = JuniperCliConfigurator(self._cli, resource_config, logger)
+            connectivity_flow = MyConnectivityFlow(cli_configurator, logger)
+            logger.info('Start applying connectivity changes, request is: {0}'.format(str(request)))
+            result = connectivity_flow.apply_connectivity_changes(request=request)
+            logger.info('Finished applying connectivity changes, response is: {0}'.format(str(result)))
+            logger.info('Apply Connectivity changes completed')
+            return result
 
     # </editor-fold>
 
@@ -239,7 +273,7 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         password = resource.password
 
         # === In production, password  on context is encrypted, needs to be decrypted via api ===
-        # api = CloudShellSessionContext(context).get_api()
+        api = CloudShellSessionContext(context).get_api()
         # password = api.DecryptPassword(password)
 
         # Get CLI session
@@ -278,7 +312,7 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
 
     # <editor-fold desc="Health Check">
 
-    def health_check(self,cancellation_context):
+    def health_check(self, cancellation_context):
         """
         Checks if the device is up and connectable
         :return: str: Success or fail message
@@ -299,5 +333,12 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         :param ResourceCommandContext context:
         :return:
         """
+        api = CloudShellSessionContext(context).get_api()
+        res_id = context.reservation.reservation_id
+
         name = context.resource.name
-        context.connectors
+        ip = context.resource.address
+
+        api.WriteMessageToReservationOutput(res_id, "resource name: {}, ip: {}".format(name, ip))
+
+        pass

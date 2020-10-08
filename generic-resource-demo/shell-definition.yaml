@@ -16,13 +16,15 @@ node_types:
 
   vendor.resource.Generic Resource Demo:
     derived_from: cloudshell.nodes.GenericResource
-    #properties:
-    #  my_property:
-    #    type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
-    #    default: fast
-    #    description: Some attribute description
-    #    constraints:
-    #      - valid_values: [fast, slow]
+    properties:
+      my_property_demo:
+        type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+        description: Some attribute description
+        tags: [configuration, setting, abstract_filter]
+      custom property 2:
+        type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+        description: Some attribute description
+        tags: [configuration, setting, abstract_filter]
     capabilities:
       auto_discovery_capability:
         type: cloudshell.capabilities.AutoDiscovery
@@ -36,6 +38,12 @@ node_types:
           inventory_description:
             type: string
             default: Describe the resource shell template
+          my_property_demo:
+            type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+            description: Some attribute description
+          custom property 2:
+            type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+            description: Some attribute description
     artifacts:
       icon:
         file: shell-icon.png

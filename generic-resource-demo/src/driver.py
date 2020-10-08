@@ -2,6 +2,7 @@ from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterf
 from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext, AutoLoadResource, \
     AutoLoadAttribute, AutoLoadDetails, CancellationContext
 from data_model import *  # run 'shellfoundry generate' to generate data model classes
+from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionContext
 
 
 class GenericResourceDemoDriver (ResourceDriverInterface):
@@ -139,6 +140,13 @@ class GenericResourceDemoDriver (ResourceDriverInterface):
         :param ResourceCommandContext context:
         :return:
         """
+        api = CloudShellSessionContext(context).get_api()
+        res_id = context.reservation.reservation_id
+        api.WriteMessageToReservationOutput(res_id, "first session print")
+        api.Logoff()
+        api = CloudShellSessionContext(context).get_api()
+        api.WriteMessageToReservationOutput(res_id, "second session print")
+
         name = context.resource.name
         model = context.resource.model
         address = context.resource.address

@@ -16,13 +16,18 @@ node_types:
 
   vendor.switch.ComputeDemo:
     derived_from: cloudshell.nodes.Compute
-    #properties:
-    #  my_property:
-    #    type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
-    #    default: fast
-    #    description: Some attribute description
-    #    constraints:
-    #      - valid_values: [fast, slow]
+    properties:
+      my_property:
+        type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+        default: fast
+        description: Some attribute description
+        constraints:
+          - valid_values: [fast, slow]
+      my_property2:
+        type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+        default: demo default
+        description: Some attribute description
+
     capabilities:
       auto_discovery_capability:
         type: cloudshell.capabilities.AutoDiscovery
@@ -42,6 +47,12 @@ node_types:
           Password:
             description: The password is required by some CLI protocols such as Telnet and is required according to the device configuration.
             type: cloudshell.datatypes.Password
+          my_property:
+            type: string          # optional values: string, integer, float, boolean, cloudshell.datatypes.Password
+            default: fast
+            description: Some attribute description
+            constraints:
+              - valid_values: [fast, slow]
     artifacts:
       icon:
         file: shell-icon.png

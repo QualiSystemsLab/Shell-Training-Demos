@@ -1,0 +1,140 @@
+{
+    "driverRequest":{
+        "actions":[
+            {
+                "connectionId":"1e3c948c-793f-4a16-a67b-e0258c82784d",
+                "connectionParams":{
+                    "vlanId":"2",
+                    "mode":"Access",
+                    "vlanServiceAttributes":[
+                        {
+                            "attributeName":"Allocation Ranges",
+                            "attributeValue":"2-4094",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Isolation Level",
+                            "attributeValue":"Exclusive",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Access Mode",
+                            "attributeValue":"Access",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"VLAN ID",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Virtual Network",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Default VLAN",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"QnQ",
+                            "attributeValue":"False",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"CTag",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        }
+                    ],
+                    "type":"setVlanParameter"
+                },
+                "connectorAttributes":[
+                    {
+                        "attributeName":"Selected Network",
+                        "attributeValue":"2",
+                        "type":"connectorAttribute"
+                    }
+                ],
+                "actionTarget":{
+                    "fullName":"network switch demo 1/chassis1/module1/port2",
+                    "fullAddress":"1.1.1.1/1/1/2",
+                    "type":"actionTarget"
+                },
+                "customActionAttributes":[
+
+                ],
+                "actionId":"1e3c948c-793f-4a16-a67b-e0258c82784d_b3b8b32d-7acd-4710-a48a-7ff6906be319",
+                "type":"setVlan"
+            },
+            {
+                "connectionId":"1e3c948c-793f-4a16-a67b-e0258c82784d",
+                "connectionParams":{
+                    "vlanId":"2",
+                    "mode":"Access",
+                    "vlanServiceAttributes":[
+                        {
+                            "attributeName":"Allocation Ranges",
+                            "attributeValue":"2-4094",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Isolation Level",
+                            "attributeValue":"Exclusive",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Access Mode",
+                            "attributeValue":"Access",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"VLAN ID",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Virtual Network",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"Default VLAN",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"QnQ",
+                            "attributeValue":"False",
+                            "type":"vlanServiceAttribute"
+                        },
+                        {
+                            "attributeName":"CTag",
+                            "attributeValue":"",
+                            "type":"vlanServiceAttribute"
+                        }
+                    ],
+                    "type":"setVlanParameter"
+                },
+                "connectorAttributes":[
+                    {
+                        "attributeName":"Selected Network",
+                        "attributeValue":"2",
+                        "type":"connectorAttribute"
+                    }
+                ],
+                "actionTarget":{
+                    "fullName":"network switch demo 1/chassis1/module1/port1",
+                    "fullAddress":"1.1.1.1/1/1/1",
+                    "type":"actionTarget"
+                },
+                "customActionAttributes":[
+
+                ],
+                "actionId":"1e3c948c-793f-4a16-a67b-e0258c82784d_efb956d8-a08b-48de-839c-2686193d55c3",
+                "type":"setVlan"
+            }
+        ]
+    }
+}

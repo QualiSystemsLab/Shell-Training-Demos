@@ -1,6 +1,6 @@
 <Driver Description="Describe the purpose of your CloudShell shell" MainClass="driver.NetworkingSwitchDemoDriver"
         Name="NetworkingSwitchDemoDriver" Version="1.0.0"
-        PythonVersion="3">
+        PythonVersion="2">
     <Layout>
         <Category Name="Hidden Commands">
             <Command Name="shutdown" DisplayName="Shutdown" Tags=""
