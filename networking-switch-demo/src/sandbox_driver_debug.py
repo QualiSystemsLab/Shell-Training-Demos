@@ -3,6 +3,7 @@ import cloudshell.helpers.scripts.cloudshell_scripts_helpers as sh
 from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext, ConnectivityContext, \
     Connector, ReservationContextDetails, ResourceContextDetails
 import driver as my_driver
+from cloudshell.api.cloudshell_api import CloudShellAPISession
 
 LIVE_SANDBOX_ID = "1e91bfae-2414-44d8-8315-998341e168d0"
 RESOURCE_NAME = "network switch demo 1"
@@ -17,8 +18,12 @@ attach_to_cloudshell_as(
     resource_name=RESOURCE_NAME
 )
 
+
 session = sh.get_api_session()
-token = session.token_id
+# token = session.token_id  # deprecated
+token = session.authentication.xmlrpc_token
+x = session.authentication.logon_manager.token_id
+
 
 resource_context_details = sh.get_resource_context_details()
 reservation_context_details = sh.get_reservation_context_details()

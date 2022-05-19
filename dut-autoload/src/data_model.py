@@ -72,14 +72,14 @@ class LegacyUtils(object):
         return inspect.getmembers(sys.modules[__name__], inspect.isclass)
 
 
-class GenericResourceDemo(object):
+class DutAutoload(object):
     def __init__(self, name):
         """
         
         """
         self.attributes = {}
         self.resources = {}
-        self._cloudshell_model_name = 'Generic Resource Demo'
+        self._cloudshell_model_name = 'Dut Autoload'
         self._name = name
 
     def add_sub_resource(self, relative_path, sub_resource):
@@ -92,9 +92,9 @@ class GenericResourceDemo(object):
         :param context: cloudshell.shell.core.driver_context.ResourceCommandContext
         :type context: cloudshell.shell.core.driver_context.ResourceCommandContext
         :return:
-        :rtype GenericResourceDemo
+        :rtype DutAutoload
         """
-        result = GenericResourceDemo(name=context.resource.name)
+        result = DutAutoload(name=context.resource.name)
         for attr in context.resource.attributes:
             result.attributes[attr] = context.resource.attributes[attr]
         return result
@@ -152,44 +152,29 @@ class GenericResourceDemo(object):
         Returns the name of the Cloudshell model
         :return:
         """
-        return 'GenericResourceDemo'
+        return 'DutAutoload'
 
     @property
-    def my_property_demo(self):
+    def port_count(self):
         """
-        :rtype: str
+        :rtype: float
         """
-        return self.attributes['Generic Resource Demo.my_property_demo'] if 'Generic Resource Demo.my_property_demo' in self.attributes else None
+        return self.attributes['Dut Autoload.port_count'] if 'Dut Autoload.port_count' in self.attributes else None
 
-    @my_property_demo.setter
-    def my_property_demo(self, value):
+    @port_count.setter
+    def port_count(self, value='4'):
         """
-        Some attribute description
-        :type value: str
+        how many ports to attach to root
+        :type value: float
         """
-        self.attributes['Generic Resource Demo.my_property_demo'] = value
-
-    @property
-    def custom_property_2(self):
-        """
-        :rtype: str
-        """
-        return self.attributes['Generic Resource Demo.custom property 2'] if 'Generic Resource Demo.custom property 2' in self.attributes else None
-
-    @custom_property_2.setter
-    def custom_property_2(self, value):
-        """
-        Some attribute description
-        :type value: str
-        """
-        self.attributes['Generic Resource Demo.custom property 2'] = value
+        self.attributes['Dut Autoload.port_count'] = value
 
     @property
     def user(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.User'] if 'Generic Resource Demo.User' in self.attributes else None
+        return self.attributes['Dut Autoload.User'] if 'Dut Autoload.User' in self.attributes else None
 
     @user.setter
     def user(self, value):
@@ -197,14 +182,14 @@ class GenericResourceDemo(object):
         User with administrative privileges
         :type value: str
         """
-        self.attributes['Generic Resource Demo.User'] = value
+        self.attributes['Dut Autoload.User'] = value
 
     @property
     def password(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.Password'] if 'Generic Resource Demo.Password' in self.attributes else None
+        return self.attributes['Dut Autoload.Password'] if 'Dut Autoload.Password' in self.attributes else None
 
     @password.setter
     def password(self, value):
@@ -212,14 +197,14 @@ class GenericResourceDemo(object):
         
         :type value: string
         """
-        self.attributes['Generic Resource Demo.Password'] = value
+        self.attributes['Dut Autoload.Password'] = value
 
     @property
     def enable_password(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.Enable Password'] if 'Generic Resource Demo.Enable Password' in self.attributes else None
+        return self.attributes['Dut Autoload.Enable Password'] if 'Dut Autoload.Enable Password' in self.attributes else None
 
     @enable_password.setter
     def enable_password(self, value):
@@ -227,14 +212,14 @@ class GenericResourceDemo(object):
         The enable password is required by some CLI protocols such as Telnet and is required according to the device configuration.
         :type value: string
         """
-        self.attributes['Generic Resource Demo.Enable Password'] = value
+        self.attributes['Dut Autoload.Enable Password'] = value
 
     @property
     def power_management(self):
         """
         :rtype: bool
         """
-        return self.attributes['Generic Resource Demo.Power Management'] if 'Generic Resource Demo.Power Management' in self.attributes else None
+        return self.attributes['Dut Autoload.Power Management'] if 'Dut Autoload.Power Management' in self.attributes else None
 
     @power_management.setter
     def power_management(self, value=True):
@@ -242,14 +227,14 @@ class GenericResourceDemo(object):
         Used by the power management orchestration, if enabled, to determine whether to automatically manage the device power status. Enabled by default.
         :type value: bool
         """
-        self.attributes['Generic Resource Demo.Power Management'] = value
+        self.attributes['Dut Autoload.Power Management'] = value
 
     @property
     def sessions_concurrency_limit(self):
         """
         :rtype: float
         """
-        return self.attributes['Generic Resource Demo.Sessions Concurrency Limit'] if 'Generic Resource Demo.Sessions Concurrency Limit' in self.attributes else None
+        return self.attributes['Dut Autoload.Sessions Concurrency Limit'] if 'Dut Autoload.Sessions Concurrency Limit' in self.attributes else None
 
     @sessions_concurrency_limit.setter
     def sessions_concurrency_limit(self, value='1'):
@@ -257,14 +242,14 @@ class GenericResourceDemo(object):
         The maximum number of concurrent sessions that the driver will open to the device. Default is 1 (no concurrency).
         :type value: float
         """
-        self.attributes['Generic Resource Demo.Sessions Concurrency Limit'] = value
+        self.attributes['Dut Autoload.Sessions Concurrency Limit'] = value
 
     @property
     def snmp_read_community(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.SNMP Read Community'] if 'Generic Resource Demo.SNMP Read Community' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP Read Community'] if 'Dut Autoload.SNMP Read Community' in self.attributes else None
 
     @snmp_read_community.setter
     def snmp_read_community(self, value):
@@ -272,14 +257,14 @@ class GenericResourceDemo(object):
         The SNMP Read-Only Community String is like a password. It is sent along with each SNMP Get-Request and allows (or denies) access to device.
         :type value: string
         """
-        self.attributes['Generic Resource Demo.SNMP Read Community'] = value
+        self.attributes['Dut Autoload.SNMP Read Community'] = value
 
     @property
     def snmp_write_community(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.SNMP Write Community'] if 'Generic Resource Demo.SNMP Write Community' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP Write Community'] if 'Dut Autoload.SNMP Write Community' in self.attributes else None
 
     @snmp_write_community.setter
     def snmp_write_community(self, value):
@@ -287,14 +272,14 @@ class GenericResourceDemo(object):
         The SNMP Write Community String is like a password. It is sent along with each SNMP Set-Request and allows (or denies) chaning MIBs values.
         :type value: string
         """
-        self.attributes['Generic Resource Demo.SNMP Write Community'] = value
+        self.attributes['Dut Autoload.SNMP Write Community'] = value
 
     @property
     def snmp_v3_user(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.SNMP V3 User'] if 'Generic Resource Demo.SNMP V3 User' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP V3 User'] if 'Dut Autoload.SNMP V3 User' in self.attributes else None
 
     @snmp_v3_user.setter
     def snmp_v3_user(self, value):
@@ -302,14 +287,14 @@ class GenericResourceDemo(object):
         Relevant only in case SNMP V3 is in use.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.SNMP V3 User'] = value
+        self.attributes['Dut Autoload.SNMP V3 User'] = value
 
     @property
     def snmp_v3_password(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.SNMP V3 Password'] if 'Generic Resource Demo.SNMP V3 Password' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP V3 Password'] if 'Dut Autoload.SNMP V3 Password' in self.attributes else None
 
     @snmp_v3_password.setter
     def snmp_v3_password(self, value):
@@ -317,14 +302,14 @@ class GenericResourceDemo(object):
         Relevant only in case SNMP V3 is in use.
         :type value: string
         """
-        self.attributes['Generic Resource Demo.SNMP V3 Password'] = value
+        self.attributes['Dut Autoload.SNMP V3 Password'] = value
 
     @property
     def snmp_v3_private_key(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.SNMP V3 Private Key'] if 'Generic Resource Demo.SNMP V3 Private Key' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP V3 Private Key'] if 'Dut Autoload.SNMP V3 Private Key' in self.attributes else None
 
     @snmp_v3_private_key.setter
     def snmp_v3_private_key(self, value):
@@ -332,14 +317,14 @@ class GenericResourceDemo(object):
         Relevant only in case SNMP V3 is in use.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.SNMP V3 Private Key'] = value
+        self.attributes['Dut Autoload.SNMP V3 Private Key'] = value
 
     @property
     def snmp_v3_authentication_protocol(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.SNMP V3 Authentication Protocol'] if 'Generic Resource Demo.SNMP V3 Authentication Protocol' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP V3 Authentication Protocol'] if 'Dut Autoload.SNMP V3 Authentication Protocol' in self.attributes else None
 
     @snmp_v3_authentication_protocol.setter
     def snmp_v3_authentication_protocol(self, value='No Authentication Protocol'):
@@ -347,14 +332,14 @@ class GenericResourceDemo(object):
         Relevant only in case SNMP V3 is in use.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.SNMP V3 Authentication Protocol'] = value
+        self.attributes['Dut Autoload.SNMP V3 Authentication Protocol'] = value
 
     @property
     def snmp_v3_privacy_protocol(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.SNMP V3 Privacy Protocol'] if 'Generic Resource Demo.SNMP V3 Privacy Protocol' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP V3 Privacy Protocol'] if 'Dut Autoload.SNMP V3 Privacy Protocol' in self.attributes else None
 
     @snmp_v3_privacy_protocol.setter
     def snmp_v3_privacy_protocol(self, value='No Privacy Protocol'):
@@ -362,14 +347,14 @@ class GenericResourceDemo(object):
         Relevant only in case SNMP V3 is in use.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.SNMP V3 Privacy Protocol'] = value
+        self.attributes['Dut Autoload.SNMP V3 Privacy Protocol'] = value
 
     @property
     def snmp_version(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.SNMP Version'] if 'Generic Resource Demo.SNMP Version' in self.attributes else None
+        return self.attributes['Dut Autoload.SNMP Version'] if 'Dut Autoload.SNMP Version' in self.attributes else None
 
     @snmp_version.setter
     def snmp_version(self, value=''):
@@ -377,14 +362,14 @@ class GenericResourceDemo(object):
         The version of SNMP to use. Possible values are v1, v2c and v3.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.SNMP Version'] = value
+        self.attributes['Dut Autoload.SNMP Version'] = value
 
     @property
     def enable_snmp(self):
         """
         :rtype: bool
         """
-        return self.attributes['Generic Resource Demo.Enable SNMP'] if 'Generic Resource Demo.Enable SNMP' in self.attributes else None
+        return self.attributes['Dut Autoload.Enable SNMP'] if 'Dut Autoload.Enable SNMP' in self.attributes else None
 
     @enable_snmp.setter
     def enable_snmp(self, value=True):
@@ -392,14 +377,14 @@ class GenericResourceDemo(object):
         If set to True and SNMP isn???t enabled yet in the device the Shell will automatically enable SNMP in the device when Autoload command is called. SNMP must be enabled on the device for the Autoload command to run successfully. True by default.
         :type value: bool
         """
-        self.attributes['Generic Resource Demo.Enable SNMP'] = value
+        self.attributes['Dut Autoload.Enable SNMP'] = value
 
     @property
     def disable_snmp(self):
         """
         :rtype: bool
         """
-        return self.attributes['Generic Resource Demo.Disable SNMP'] if 'Generic Resource Demo.Disable SNMP' in self.attributes else None
+        return self.attributes['Dut Autoload.Disable SNMP'] if 'Dut Autoload.Disable SNMP' in self.attributes else None
 
     @disable_snmp.setter
     def disable_snmp(self, value=False):
@@ -407,14 +392,14 @@ class GenericResourceDemo(object):
         If set to True SNMP will be disabled automatically by the Shell after the Autoload command execution is completed. False by default.
         :type value: bool
         """
-        self.attributes['Generic Resource Demo.Disable SNMP'] = value
+        self.attributes['Dut Autoload.Disable SNMP'] = value
 
     @property
     def console_server_ip_address(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.Console Server IP Address'] if 'Generic Resource Demo.Console Server IP Address' in self.attributes else None
+        return self.attributes['Dut Autoload.Console Server IP Address'] if 'Dut Autoload.Console Server IP Address' in self.attributes else None
 
     @console_server_ip_address.setter
     def console_server_ip_address(self, value):
@@ -422,14 +407,14 @@ class GenericResourceDemo(object):
         The IP address of the console server, in IPv4 format.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.Console Server IP Address'] = value
+        self.attributes['Dut Autoload.Console Server IP Address'] = value
 
     @property
     def console_user(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.Console User'] if 'Generic Resource Demo.Console User' in self.attributes else None
+        return self.attributes['Dut Autoload.Console User'] if 'Dut Autoload.Console User' in self.attributes else None
 
     @console_user.setter
     def console_user(self, value):
@@ -437,14 +422,14 @@ class GenericResourceDemo(object):
         
         :type value: str
         """
-        self.attributes['Generic Resource Demo.Console User'] = value
+        self.attributes['Dut Autoload.Console User'] = value
 
     @property
     def console_port(self):
         """
         :rtype: float
         """
-        return self.attributes['Generic Resource Demo.Console Port'] if 'Generic Resource Demo.Console Port' in self.attributes else None
+        return self.attributes['Dut Autoload.Console Port'] if 'Dut Autoload.Console Port' in self.attributes else None
 
     @console_port.setter
     def console_port(self, value):
@@ -452,14 +437,14 @@ class GenericResourceDemo(object):
         The port on the console server, usually TCP port, which the device is associated with.
         :type value: float
         """
-        self.attributes['Generic Resource Demo.Console Port'] = value
+        self.attributes['Dut Autoload.Console Port'] = value
 
     @property
     def console_password(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.Console Password'] if 'Generic Resource Demo.Console Password' in self.attributes else None
+        return self.attributes['Dut Autoload.Console Password'] if 'Dut Autoload.Console Password' in self.attributes else None
 
     @console_password.setter
     def console_password(self, value):
@@ -467,14 +452,14 @@ class GenericResourceDemo(object):
         
         :type value: string
         """
-        self.attributes['Generic Resource Demo.Console Password'] = value
+        self.attributes['Dut Autoload.Console Password'] = value
 
     @property
     def cli_connection_type(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.CLI Connection Type'] if 'Generic Resource Demo.CLI Connection Type' in self.attributes else None
+        return self.attributes['Dut Autoload.CLI Connection Type'] if 'Dut Autoload.CLI Connection Type' in self.attributes else None
 
     @cli_connection_type.setter
     def cli_connection_type(self, value='Auto'):
@@ -482,14 +467,14 @@ class GenericResourceDemo(object):
         The CLI connection type that will be used by the driver. Possible values are Auto, Console, SSH, Telnet and TCP. If Auto is selected the driver will choose the available connection type automatically. Default value is Auto.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.CLI Connection Type'] = value
+        self.attributes['Dut Autoload.CLI Connection Type'] = value
 
     @property
     def cli_tcp_port(self):
         """
         :rtype: float
         """
-        return self.attributes['Generic Resource Demo.CLI TCP Port'] if 'Generic Resource Demo.CLI TCP Port' in self.attributes else None
+        return self.attributes['Dut Autoload.CLI TCP Port'] if 'Dut Autoload.CLI TCP Port' in self.attributes else None
 
     @cli_tcp_port.setter
     def cli_tcp_port(self, value):
@@ -497,14 +482,14 @@ class GenericResourceDemo(object):
         TCP Port to user for CLI connection. If kept empty a default CLI port will be used based on the chosen protocol, for example Telnet will use port 23.
         :type value: float
         """
-        self.attributes['Generic Resource Demo.CLI TCP Port'] = value
+        self.attributes['Dut Autoload.CLI TCP Port'] = value
 
     @property
     def backup_location(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.Backup Location'] if 'Generic Resource Demo.Backup Location' in self.attributes else None
+        return self.attributes['Dut Autoload.Backup Location'] if 'Dut Autoload.Backup Location' in self.attributes else None
 
     @backup_location.setter
     def backup_location(self, value):
@@ -512,14 +497,14 @@ class GenericResourceDemo(object):
         Used by the save/restore orchestration to determine where backups should be saved.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.Backup Location'] = value
+        self.attributes['Dut Autoload.Backup Location'] = value
 
     @property
     def backup_type(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.Backup Type'] if 'Generic Resource Demo.Backup Type' in self.attributes else None
+        return self.attributes['Dut Autoload.Backup Type'] if 'Dut Autoload.Backup Type' in self.attributes else None
 
     @backup_type.setter
     def backup_type(self, value='File System'):
@@ -527,14 +512,14 @@ class GenericResourceDemo(object):
         Supported protocols for saving and restoring of configuration and firmware files. Possible values are 'File System' 'FTP' and 'TFTP'. Default value is 'File System'.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.Backup Type'] = value
+        self.attributes['Dut Autoload.Backup Type'] = value
 
     @property
     def backup_user(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.Backup User'] if 'Generic Resource Demo.Backup User' in self.attributes else None
+        return self.attributes['Dut Autoload.Backup User'] if 'Dut Autoload.Backup User' in self.attributes else None
 
     @backup_user.setter
     def backup_user(self, value):
@@ -542,14 +527,14 @@ class GenericResourceDemo(object):
         Username for the storage server used for saving and restoring of configuration and firmware files.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.Backup User'] = value
+        self.attributes['Dut Autoload.Backup User'] = value
 
     @property
     def backup_password(self):
         """
         :rtype: string
         """
-        return self.attributes['Generic Resource Demo.Backup Password'] if 'Generic Resource Demo.Backup Password' in self.attributes else None
+        return self.attributes['Dut Autoload.Backup Password'] if 'Dut Autoload.Backup Password' in self.attributes else None
 
     @backup_password.setter
     def backup_password(self, value):
@@ -557,7 +542,7 @@ class GenericResourceDemo(object):
         Password for the storage server used for saving and restoring of configuration and firmware files.
         :type value: string
         """
-        self.attributes['Generic Resource Demo.Backup Password'] = value
+        self.attributes['Dut Autoload.Backup Password'] = value
 
     @property
     def name(self):
@@ -687,7 +672,7 @@ class ResourcePort(object):
         """
         self.attributes = {}
         self.resources = {}
-        self._cloudshell_model_name = 'Generic Resource Demo.ResourcePort'
+        self._cloudshell_model_name = 'Dut Autoload.ResourcePort'
         self._name = name
 
     def add_sub_resource(self, relative_path, sub_resource):
@@ -767,7 +752,7 @@ class ResourcePort(object):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.ResourcePort.MAC Address'] if 'Generic Resource Demo.ResourcePort.MAC Address' in self.attributes else None
+        return self.attributes['Dut Autoload.ResourcePort.MAC Address'] if 'Dut Autoload.ResourcePort.MAC Address' in self.attributes else None
 
     @mac_address.setter
     def mac_address(self, value=''):
@@ -775,14 +760,14 @@ class ResourcePort(object):
         
         :type value: str
         """
-        self.attributes['Generic Resource Demo.ResourcePort.MAC Address'] = value
+        self.attributes['Dut Autoload.ResourcePort.MAC Address'] = value
 
     @property
     def ipv4_address(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.ResourcePort.IPv4 Address'] if 'Generic Resource Demo.ResourcePort.IPv4 Address' in self.attributes else None
+        return self.attributes['Dut Autoload.ResourcePort.IPv4 Address'] if 'Dut Autoload.ResourcePort.IPv4 Address' in self.attributes else None
 
     @ipv4_address.setter
     def ipv4_address(self, value):
@@ -790,14 +775,14 @@ class ResourcePort(object):
         
         :type value: str
         """
-        self.attributes['Generic Resource Demo.ResourcePort.IPv4 Address'] = value
+        self.attributes['Dut Autoload.ResourcePort.IPv4 Address'] = value
 
     @property
     def ipv6_address(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.ResourcePort.IPv6 Address'] if 'Generic Resource Demo.ResourcePort.IPv6 Address' in self.attributes else None
+        return self.attributes['Dut Autoload.ResourcePort.IPv6 Address'] if 'Dut Autoload.ResourcePort.IPv6 Address' in self.attributes else None
 
     @ipv6_address.setter
     def ipv6_address(self, value):
@@ -805,14 +790,14 @@ class ResourcePort(object):
         
         :type value: str
         """
-        self.attributes['Generic Resource Demo.ResourcePort.IPv6 Address'] = value
+        self.attributes['Dut Autoload.ResourcePort.IPv6 Address'] = value
 
     @property
     def port_speed(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.ResourcePort.Port Speed'] if 'Generic Resource Demo.ResourcePort.Port Speed' in self.attributes else None
+        return self.attributes['Dut Autoload.ResourcePort.Port Speed'] if 'Dut Autoload.ResourcePort.Port Speed' in self.attributes else None
 
     @port_speed.setter
     def port_speed(self, value):
@@ -820,7 +805,7 @@ class ResourcePort(object):
         The port speed (e.g 10Gb/s, 40Gb/s, 100Mb/s)
         :type value: str
         """
-        self.attributes['Generic Resource Demo.ResourcePort.Port Speed'] = value
+        self.attributes['Dut Autoload.ResourcePort.Port Speed'] = value
 
     @property
     def name(self):
@@ -875,7 +860,7 @@ class GenericPowerPort(object):
         """
         self.attributes = {}
         self.resources = {}
-        self._cloudshell_model_name = 'Generic Resource Demo.GenericPowerPort'
+        self._cloudshell_model_name = 'Dut Autoload.GenericPowerPort'
         self._name = name
 
     def add_sub_resource(self, relative_path, sub_resource):
@@ -955,7 +940,7 @@ class GenericPowerPort(object):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.GenericPowerPort.Model'] if 'Generic Resource Demo.GenericPowerPort.Model' in self.attributes else None
+        return self.attributes['Dut Autoload.GenericPowerPort.Model'] if 'Dut Autoload.GenericPowerPort.Model' in self.attributes else None
 
     @model.setter
     def model(self, value):
@@ -963,14 +948,14 @@ class GenericPowerPort(object):
         The device model. This information is typically used for abstract resource filtering.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.GenericPowerPort.Model'] = value
+        self.attributes['Dut Autoload.GenericPowerPort.Model'] = value
 
     @property
     def serial_number(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.GenericPowerPort.Serial Number'] if 'Generic Resource Demo.GenericPowerPort.Serial Number' in self.attributes else None
+        return self.attributes['Dut Autoload.GenericPowerPort.Serial Number'] if 'Dut Autoload.GenericPowerPort.Serial Number' in self.attributes else None
 
     @serial_number.setter
     def serial_number(self, value):
@@ -978,14 +963,14 @@ class GenericPowerPort(object):
         
         :type value: str
         """
-        self.attributes['Generic Resource Demo.GenericPowerPort.Serial Number'] = value
+        self.attributes['Dut Autoload.GenericPowerPort.Serial Number'] = value
 
     @property
     def version(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.GenericPowerPort.Version'] if 'Generic Resource Demo.GenericPowerPort.Version' in self.attributes else None
+        return self.attributes['Dut Autoload.GenericPowerPort.Version'] if 'Dut Autoload.GenericPowerPort.Version' in self.attributes else None
 
     @version.setter
     def version(self, value):
@@ -993,14 +978,14 @@ class GenericPowerPort(object):
         The firmware version of the resource.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.GenericPowerPort.Version'] = value
+        self.attributes['Dut Autoload.GenericPowerPort.Version'] = value
 
     @property
     def port_description(self):
         """
         :rtype: str
         """
-        return self.attributes['Generic Resource Demo.GenericPowerPort.Port Description'] if 'Generic Resource Demo.GenericPowerPort.Port Description' in self.attributes else None
+        return self.attributes['Dut Autoload.GenericPowerPort.Port Description'] if 'Dut Autoload.GenericPowerPort.Port Description' in self.attributes else None
 
     @port_description.setter
     def port_description(self, value):
@@ -1008,7 +993,7 @@ class GenericPowerPort(object):
         The description of the port as configured in the device.
         :type value: str
         """
-        self.attributes['Generic Resource Demo.GenericPowerPort.Port Description'] = value
+        self.attributes['Dut Autoload.GenericPowerPort.Port Description'] = value
 
     @property
     def name(self):

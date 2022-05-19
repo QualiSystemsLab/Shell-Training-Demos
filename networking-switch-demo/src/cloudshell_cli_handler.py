@@ -44,11 +44,11 @@ class CreateSession():
 
 
 if __name__ == "__main__":
-    host = "192.168.85.32"
+    host = "192.168.85.120"
     username = "root"
     password = "qs1234"
 
-    sample_command = 'ls'
+    sample_command = 'ifconfig'
     cli = CreateSession(host, username, password)
     outp = cli.send_terminal_command(sample_command)
     print(outp)

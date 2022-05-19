@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 
 """
-Tests for `GenericResourceDemoDriver`
+Tests for `DutAutoloadDriver`
 """
 
 import unittest
 
-from src.driver import GenericResourceDemoDriver
+from driver import DutAutoloadDriver
 
 
-class TestGenericResourceDemoDriver(unittest.TestCase):
+class TestDutAutoloadDriver(unittest.TestCase):
 
     def setUp(self):
         pass

@@ -1,11 +1,10 @@
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext, AutoLoadResource, \
-    AutoLoadAttribute, AutoLoadDetails, CancellationContext, AutoLoadCommandContext
+    AutoLoadAttribute, AutoLoadDetails, CancellationContext
 from data_model import *  # run 'shellfoundry generate' to generate data model classes
-from cloudshell.shell.core.session.cloudshell_session import CloudShellSessionContext
-from custom_data_model import CustomGenericResource, CustomResourcePort
 
-class GenericResourceDemoDriver (ResourceDriverInterface):
+
+class DutAutoloadDriver (ResourceDriverInterface):
 
     def __init__(self):
         """
@@ -41,21 +40,14 @@ class GenericResourceDemoDriver (ResourceDriverInterface):
         # In real life, this code will be preceded by SNMP/other calls to the resource details and will not be static
         # run 'shellfoundry generate' in order to create classes that represent your data model
 
-        root_resource_id = context.resource.id
-        resource = CustomGenericResource.create_from_context(context, root_resource_id)
+        resource = DutAutoload.create_from_context(context)
+        port_count = int(resource.port_count)
 
-        resource.my_property_demo = root_resource_id
+        for i in range(1, port_count + 1):
+            port = ResourcePort(f'Port {i}')
+            resource.add_sub_resource(i, port)
 
-        resource.vendor = 'my vendor'
-        resource.model = 'my model'
-
-        port1 = CustomResourcePort('Port 1', context.resource.name)
-        port1.ipv4_address = '192.168.10.7'
-        resource.add_sub_resource('1', port1)
-
-        autoload_details = resource.create_autoload_details()
-        return autoload_details
-        # return resource.create_autoload_details()
+        return resource.create_autoload_details()
         # return AutoLoadDetails([], [])
 
     # </editor-fold>
@@ -137,22 +129,12 @@ class GenericResourceDemoDriver (ResourceDriverInterface):
         '''
         pass
 
-    # </editor-fold>
     def hello_world(self, context):
         """
-        say hello to the world
+
         :param ResourceCommandContext context:
         :return:
         """
-        api = CloudShellSessionContext(context).get_api()
-        res_id = context.reservation.reservation_id
-        api.WriteMessageToReservationOutput(res_id, "first session print")
-        api.Logoff()
-        api = CloudShellSessionContext(context).get_api()
-        api.WriteMessageToReservationOutput(res_id, "second session print")
+        return f"hello from resource {context.resource.name}"
 
-        name = context.resource.name
-        model = context.resource.model
-        address = context.resource.address
-        return "Hello, I am {}, my model is {}, my ip is {}".format(name, model, address)
-
+    # </editor-fold>

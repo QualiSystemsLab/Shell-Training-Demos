@@ -283,8 +283,7 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         build_resource_flow = BuildResourceFlow(resource=resource, cli=cli)
         resource = build_resource_flow.build_resource()
 
-        """
-        === SAMPLE CODE ===
+        # === SAMPLE CODE ===
         resource.vendor = 'specify the shell vendor'
         resource.model = 'specify the shell model'
 
@@ -302,7 +301,6 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         port1.mac_address = 'fe80::e10c:f055:f7f1:bb7t16'
         port1.ipv4_address = '192.168.10.7'
         module1.add_sub_resource('1', port1)
-        """
 
         autoload_details = resource.create_autoload_details()
         return autoload_details
@@ -335,6 +333,7 @@ class NetworkingSwitchDemoDriver(ResourceDriverInterface, NetworkingResourceDriv
         """
         api = CloudShellSessionContext(context).get_api()
         res_id = context.reservation.reservation_id
+        context.connectivity.
 
         name = context.resource.name
         ip = context.resource.address
