@@ -135,6 +135,7 @@ class DutAutoloadDriver (ResourceDriverInterface):
         :param ResourceCommandContext context:
         :return:
         """
+        context.resource.
         return f"hello from resource {context.resource.name}"
 
     # </editor-fold>

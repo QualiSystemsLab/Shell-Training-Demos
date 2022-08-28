@@ -1,4 +1,4 @@
-<Driver Description="Describe the purpose of your CloudShell shell" MainClass="driver.PduDemoDriver" Name="PduDemoDriver" Version="1.0.0">
+<Driver Description="Describe the purpose of your CloudShell shell" MainClass="driver.PduDemoDriver" Name="PduDemoDriver" Version="1.0.0" PythonVersion="3">
     <Layout>
         <Command Name="PowerOn" DisplayName="Power On" Tags="power" Description="Power on device">
         </Command>
@@ -9,7 +9,7 @@
                 <Parameter Name="delay" DisplayName="Delay" Type="String" Mandatory="False" DefaultValue="0"/>
             </Parameters>
         </Command>
-        <Command Name="my_power_on" DisplayName="My Power On" Tags="remote_connectivity" Description="Custom Power On">
+        <Command Name="my_power_on" DisplayName="My Power On" Tags="power" Description="Custom Power On">
             <Parameters>
                 <Parameter Name="target_ports" DisplayName="Target Ports" Type="String" Mandatory="False" DefaultValue=""/>
             </Parameters>

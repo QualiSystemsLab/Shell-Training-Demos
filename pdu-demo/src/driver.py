@@ -42,7 +42,6 @@ class PduDemoDriver(ResourceDriverInterface):
         # run 'shellfoundry generate' in order to create classes that represent your data model
 
         resource = PduDemo.create_from_context(context)
-        context.
         resource.vendor = 'specify the shell vendor'
         resource.model = 'specify the shell model'
 
@@ -64,7 +63,6 @@ class PduDemoDriver(ResourceDriverInterface):
         """
         :type context: cloudshell.shell.core.driver_context.ResourceRemoteCommandContext
         """
-        context.
         api = CloudShellAPISession(host=context.connectivity.server_address,
                                    token_id=context.connectivity.admin_auth_token,
                                    domain=context.remote_reservation.domain)
@@ -98,7 +96,7 @@ class PduDemoDriver(ResourceDriverInterface):
                                    token_id=context.connectivity.admin_auth_token,
                                    domain=context.remote_reservation.domain)
         res_id = context.remote_reservation.reservation_id
-        context.
+        api.WriteMessageToReservationOutput(res_id, f"ports: {ports}")
         remote_endpoint_1 = context.remote_endpoints[0]
         remote_ep1_full_name = remote_endpoint_1.fullname
         remote_ep1_model = remote_endpoint_1.model
@@ -107,6 +105,9 @@ class PduDemoDriver(ResourceDriverInterface):
         api.WriteMessageToReservationOutput(res_id, all_ep_msg)
         return "Running command on single end point '{}', with model '{}'".format(remote_ep1_full_name,
                                                                                   remote_ep1_model)
+        pass
+
+    def driver_only(self):
         pass
 
     # </editor-fold>
